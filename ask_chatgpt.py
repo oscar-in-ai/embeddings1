@@ -48,13 +48,15 @@ pinecone_api_key = os.getenv("pinecone_api_key")
 pinecone.init(api_key=pinecone_api_key, environment='us-east-1-aws')
 
 query = "What is an ethical way to distribute the burdens of climate change?"
-query = "Who is Marychu Dayao"
+#query = "Who is Oscar Lopez Veloz?"
 
 
 embedding_vector = get_openai_embedding (query)
 candidates = query_pinecone_index(embedding_vector)
 selected_file = candidates[0]['metadata']['file_name']
-print(f'File candidates:\n{candidates}')
+
+print (f'Original question: "{query}"')
+#print(f'File candidates:\n{candidates}')
 
 my_context = text = docx2txt.process(selected_file)
 
